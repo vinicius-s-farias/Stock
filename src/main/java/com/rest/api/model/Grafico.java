@@ -1,4 +1,4 @@
-package com.Rest.API.model;
+package com.rest.api.model;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,14 +17,14 @@ public class Grafico {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "id_stock")
-    private Stock id_stock;
+    private Stock idStock;
     private Double open;
     private Double close;
     private Double max;
     private Double min;
     @CreationTimestamp
     @Column(name = "created_on")
-    private Timestamp created_on;
+    private Timestamp createdOn;
 
     public Grafico() {
 
@@ -45,11 +45,11 @@ public class Grafico {
 
     public Grafico(Stock stocks) {
         Date date = new Date();
-        this.id_stock = stocks;
-        this.open = stocks.getAsk_min();
-        this.close = stocks.getAsk_min();
-        this.max = stocks.getAsk_min();
-        this.min = stocks.getAsk_min();
-        this.created_on = new Timestamp(date.getTime());
+        this.idStock = stocks;
+        this.open = stocks.getAskMin();
+        this.close = stocks.getAskMin();
+        this.max = stocks.getAskMin();
+        this.min = stocks.getAskMin();
+        this.createdOn = new Timestamp(date.getTime());
     }
 }

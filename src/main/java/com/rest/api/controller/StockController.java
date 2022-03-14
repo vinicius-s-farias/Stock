@@ -1,19 +1,17 @@
-package com.Rest.API.controller;
+package com.rest.api.controller;
 
 import java.io.IOException;
 import java.util.List;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import com.Rest.API.Service.GraficoService;
-import com.Rest.API.Service.StockService;
-import com.Rest.API.dto.StockDto;
-import com.Rest.API.model.Stock;
-import com.Rest.API.repository.StockRepository;
+import com.rest.api.service.GraficoService;
+import com.rest.api.dto.StockDto;
+import com.rest.api.model.Stock;
+import com.rest.api.repository.StockRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 
@@ -35,8 +33,6 @@ public class StockController {
     private GraficoService graficoService;
      @Autowired
      private StockRepository stockRepository;
-     @Autowired
-     private StockService stockService;
 
      public List<SseEmitter> emitters = new CopyOnWriteArrayList<>();
 
@@ -55,18 +51,18 @@ public class StockController {
      }
 
     @PostMapping("/teste")
-    public ResponseEntity<?> teste(@RequestBody StockDto stockDto){
+    public ResponseEntity<Stock> getStock(@RequestBody StockDto stockDto){
         Stock stock = stockRepository.findById(stockDto.getId()).orElseThrow();
-        if(stockDto.getAsk_max() != null) {
-            stock.setAsk_max(stockDto.getAsk_max());
-            stock.setAsk_min(stockDto.getAsk_min());
+        if(stockDto.getAskMax() != null) {
+            stock.setAskMax(stockDto.getAskMax());
+            stock.setAskMin(stockDto.getAskMin());
         }
-        if (stockDto.getBid_min() != null) {
-            stock.setBid_max(stockDto.getBid_max());
-            stock.setBid_min(stockDto.getBid_min());
+        if (stockDto.getBidMin() != null) {
+            stock.setBidMax(stockDto.getBidMax());
+            stock.setBidMin(stockDto.getBidMin());
         }
         Stock save = stockRepository.save(stock);
-        graficoService.AtualizaGrafico(save);
+        graficoService.atualizaGrafico(save);
         publicar();
         return new ResponseEntity<>(save, HttpStatus.CREATED);
     }
@@ -88,8 +84,8 @@ public class StockController {
     }
 
     @GetMapping("/{stock_name}")
-    public List <Stock> list(@PathVariable ("stock_name")String stock_name){
-        return stockRepository.FindStockName(stock_name);
+    public List <Stock> list(@PathVariable ("stock_name")String stockName){
+        return stockRepository.FindStockName(stockName);
     }
 
 

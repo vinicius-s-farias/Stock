@@ -1,9 +1,7 @@
-package com.Rest.API;
+package com.rest.api;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,10 +13,10 @@ import java.security.Principal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 @SpringBootApplication
 public class ApiApplication {
+	Random rand = new Random();
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiApplication.class, args);
@@ -37,9 +35,8 @@ public class ApiApplication {
 					"Everything is awesome. Stuff is definitely happening.",
 					"Eyeballs are rolling around in my head and I'm shouting at my coworker about JHipster.",
 					"The LD50 of caffeine is 100 cups. Your developer has had 99 and is talking to the bike rack outside while jogging in place.");
-			Random rand = new Random();
-			String caffeineLevelString = givenList.get(rand.nextInt(givenList.size()));
-			return caffeineLevelString;
+
+			return givenList.get(rand.nextInt(givenList.size()));
 		}
 
 		@GetMapping("/howcaffeinatedami")
