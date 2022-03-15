@@ -21,4 +21,6 @@ public class GraficoController {
     public List<Grafico> getGraphic(@PathVariable (value = "id_Stock") Stock idStock ) {
         return graficoRepository.FinGrafico(idStock);
     }
+
+//    alou
 }
