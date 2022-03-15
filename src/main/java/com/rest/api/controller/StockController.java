@@ -71,7 +71,7 @@ public class StockController {
     public void publicar(){
         for (SseEmitter emitter: emitters){
             try{
-                emitter.send((stockRepository.FindStock()));
+                emitter.send((stockRepository.findStock()));
             }catch (IOException e){
                 emitters.remove(emitter);
             }
@@ -80,12 +80,12 @@ public class StockController {
 
     @GetMapping("")
     public List<Stock> listar() {
-        return stockRepository.FindStock();
+        return stockRepository.findStock();
     }
 
     @GetMapping("/{stock_name}")
     public List <Stock> list(@PathVariable ("stock_name")String stockName){
-        return stockRepository.FindStockName(stockName);
+        return stockRepository.findStockName(stockName);
     }
 
 
@@ -97,7 +97,7 @@ public class StockController {
 
     @GetMapping("/page")
     Page<Stock> getStock(Pageable page){
-        return stockRepository.FindStock2(page);
+        return stockRepository.findStock2(page);
     }
 
 //    aaa

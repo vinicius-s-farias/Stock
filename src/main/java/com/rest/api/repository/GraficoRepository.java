@@ -22,7 +22,7 @@ public interface GraficoRepository  extends JpaRepository<Grafico, Long> {
     Optional<Grafico> findByIdAndDate(@Param("id_stock") Long idStock, @Param("now") Timestamp agora);
 
     @Query(value =  "  select * from grafico usb where id_stock = ?1 " , nativeQuery = true)
-    List<Grafico> FinGrafico(Stock idStock);
+    List<Grafico> finGrafico(Stock idStock);
 
 }
 

@@ -13,11 +13,11 @@ import java.util.List;
 @Repository
 public interface StockRepository extends JpaRepository<Stock, Long> {
     @Query(value =  " select * from stocks s where ask_min <> 0 and bid_min <> 0 order by updated_on desc fetch first 5 rows only" , nativeQuery = true)
-    List<Stock> FindStock();
+    List<Stock> findStock();
 
     @Query(value =  " select * from stocks s where stock_name = ?1  " , nativeQuery = true)
-    List<Stock> FindStockName(String stockName);
+    List<Stock> findStockName(String stockName);
 
     @Query(value =  " select * from stocks s where ask_min <> 0 and bid_min <> 0 order by updated_on desc " , nativeQuery = true)
-    Page<Stock> FindStock2(Pageable page);
+    Page<Stock> findStock2(Pageable page);
 }
