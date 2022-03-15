@@ -40,11 +40,10 @@ public class StockController {
         public SseEmitter subscribe(HttpServletResponse response){
          response.setHeader("Cache_Control", "no-store" );
          SseEmitter sseEmitter = new SseEmitter(Long.MAX_VALUE);
-
          try {
              this.emitters.add(sseEmitter);
          }catch (Exception e){
-             e.printStackTrace();
+        
          }
          sseEmitter.onCompletion(() -> this.emitters.remove(sseEmitter));
          return sseEmitter;
@@ -100,6 +99,6 @@ public class StockController {
         return stockRepository.findStock2(page);
     }
 
-//    aaa
+
 }
 
