@@ -5,10 +5,10 @@ import java.util.List;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import com.rest.api.service.GraficoService;
-import com.rest.api.dto.StockDto;
 import com.rest.api.model.Stock;
 import com.rest.api.repository.StockRepository;
+import com.rest.api.service.GraficoService;
+import com.rest.api.dto.StockDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,7 +34,7 @@ public class StockController {
      @Autowired
      private StockRepository stockRepository;
 
-     public List<SseEmitter> emitters = new CopyOnWriteArrayList<>();
+     private List<SseEmitter> emitters = new CopyOnWriteArrayList<>();
 
      @GetMapping(value = "/subscribe")
         public SseEmitter subscribe(HttpServletResponse response){
