@@ -19,8 +19,8 @@ public class GraficoController {
 
     @GetMapping("/grafico/{id_Stock}")
     public List<Grafico> getGraphic(@PathVariable (value = "id_Stock") Stock idStock ) {
-        return graficoRepository.FinGrafico(idStock);
+        return graficoRepository.finGrafico(idStock);
     }
 
-//    alou
+
 }
