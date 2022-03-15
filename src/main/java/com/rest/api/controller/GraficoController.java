@@ -17,7 +17,6 @@ public class GraficoController {
     private GraficoRepository graficoRepository;
 
 
-
     @GetMapping("/grafico/{id_Stock}")
     public List<Grafico> getGraphic(@PathVariable (value = "id_Stock") Stock idStock ) {
         return graficoRepository.FinGrafico(idStock);
