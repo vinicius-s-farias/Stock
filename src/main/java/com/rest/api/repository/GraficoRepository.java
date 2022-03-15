@@ -23,5 +23,6 @@ public interface GraficoRepository  extends JpaRepository<Grafico, Long> {
 
     @Query(value =  "  select * from grafico usb where id_stock = ?1 " , nativeQuery = true)
     List<Grafico> FinGrafico(Stock idStock);
+
 }
 
