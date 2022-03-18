@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-@CrossOrigin(origins = "http://localhost:8082")
+@CrossOrigin(origins ={ "http://localhost:8081" , "http://localhost:8080"} )
 @RequestMapping("/stocks")
 @RestController
 public class StockController {
