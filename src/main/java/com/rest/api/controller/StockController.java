@@ -10,6 +10,8 @@ import com.rest.api.repository.StockRepository;
 import com.rest.api.service.GraficoService;
 import com.rest.api.dto.StockDto;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,10 +27,11 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-@CrossOrigin
+@CrossOrigin(origins ={ "http://localhost:8081" , "http://localhost:8080"} )
 @RequestMapping("/stocks")
 @RestController
 public class StockController {
+    private static final Logger logger = LoggerFactory.getLogger(StockController.class);
     @Autowired
     private GraficoService graficoService;
      @Autowired
@@ -43,7 +46,7 @@ public class StockController {
          try {
              this.emitters.add(sseEmitter);
          }catch (Exception e){
-        
+            logger.error("erro");
          }
          sseEmitter.onCompletion(() -> this.emitters.remove(sseEmitter));
          return sseEmitter;
